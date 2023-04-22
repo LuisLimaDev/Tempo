@@ -1,0 +1,199 @@
+.item0{
+	animation: animY 3s infinite linear;
+}
+
+@keyframes animY{
+	0%{
+		transform: translate(0,0);
+	}
+	50%{
+		transform: translate(0,100px);
+	}
+}
+
+
+html{
+	/* --corPadrao1: #4af; */
+	/* --corPadrao2: #69e; */
+	/* --corPadrao3: #daedfffe; */
+	/* --corPadraor4: #ff8dee60; */
+	/* --verdeZap: #00cc00; */
+	/* --cinza1: #4448; */
+	/* --cinza2: rgb(255 255 255 / 50%); */
+	--borda: 1px solid var( --corPadrao2 );
+	--lados: 30px;
+	--gap10: 10px;
+	--sombra: 0 5px 15px var( --corPadrao2 );
+}
+
+*{
+	font-family: sans-serif;
+	margin: 0;
+	padding: 0;
+	transition: 0.3s all ease !important;
+}
+
+div#main{
+	width: 90%;
+	margin: 5% auto;
+	padding: var( --lados );
+	border-radius: var(--lados);
+	background: var(--cinza2);
+	box-shadow: var(--sombra);
+	backdrop-filter: blur(10px);
+}
+
+div#pagina{
+	display: grid;
+	grid-template-columns: 50% 50%;
+	grid-gap: 20px;
+}
+
+@media( max-width: 680px ){
+	html{
+		--lados: 5%;
+	}
+	div#pagina{
+		grid-template-columns: 100%;
+	}
+}
+@media( max-width: 920px ){
+	div#pagina{
+	}
+}
+
+div#menuBlock:target{
+	top: 2%;
+}
+
+div#menuBlock {
+	position: absolute;
+	top: -100%;
+	left: 5%;
+	background: linear-gradient(45deg, var(--cor4), var(--cor3));
+	padding: 10px;
+	display: grid;
+	border-radius: var(--lados);
+	box-shadow: var(--sombra);
+}
+
+#menuBlock div a, #menuBlock div h3 {display: block;padding: 10px;margin: 10px 0;}
+
+#menuBlock div a:hover {
+	background: var(--cinza1);
+	color: white;
+}
+
+div.barraTopo.main {
+	padding: 20px 0;
+}
+
+div.barraTopo{
+	display: grid;
+	grid-template-columns: 40px auto;
+	grid-gap: 20px;
+	text-align: center;
+}
+
+.view{
+	padding: var(--lados);
+	background: linear-gradient(0deg, var( --cinza2 ), transparent);
+	display: grid;
+	grid-gap: var(--gap10);
+	border-radius: var(--lados);
+	box-shadow: var(--sombra);
+	margin: 20px 0;
+}
+
+div.conteiner a:not( .botaoZap, .botao ):hover{
+	background: var( --cinza2 )
+}
+div.conteiner a:not( .botaoZap, .botao ){
+	line-height: 60px;
+	margin: 20px 0;
+	padding: 15px;
+}
+
+h1, h2, h3,h4,h5,h6, span, p, pre, section, label, input, button, a, a.botao {
+	color: var(--cor2);
+}
+
+.elmnts{
+	padding: var( --gap10);
+	width: calc( 100% - 20px;);
+	border-radius: var(--lados);
+}
+
+fieldset{
+	padding: 20px;
+	border-radius: var(--lados);
+}
+
+label{
+	display: grid;
+	background: none;
+	margin: 10px 0;
+	border: 1px solid var( --cinza1 );
+	font-size: 12pt;
+	padding: 10px 20px;
+	border-radius: var(--lados);
+}
+
+label:has(input:focus), label:has(select:focus){
+	box-shadow: 0 0 1px #000, 0 0 2px 3px var( --cor1 );
+	font-size: 8pt;
+	outline: 2px;
+}
+
+input:focus , select:focus {
+	font-size: 12pt;
+	outline: none;
+}
+
+label input, label select{ font-size: 8pt; padding: 0; border-radius: 0; margin: 0 }
+
+button, a.botao{
+	
+	padding: 10px;
+}
+
+input, select, button, a.botao{
+	background: none;
+	border: none;
+	width: 100%;
+	font-size: 12pt;
+	border-radius: var(--lados);
+}
+
+::placeholder{
+	color: var(--cinza1)
+}
+
+label:hover{
+	box-shadow: 0 0 1px #000, 0 0 2px 3px var( --cor1 );
+}
+
+button:hover, a.botao:hover, a.botaoZap:hover{
+	background: var( --cor2 );
+	color: white;
+	box-shadow: 0 0 1px #000, 0 0 2px 3px var( --cor1 );
+}
+button, a.botao{
+	background: none;
+	color: var( --cor2 );
+	border: 1px solid var( --cor2 );
+	text-align: center;
+	text-decoration: none;
+}
+
+a.botaoZap:hover{
+	background: var( --verdeZap );
+	color: white;
+}
+a.botaoZap{
+	background: none;
+	color: var( --verdeZap );
+	border: 1px solid var( --verdeZap );
+	text-align: center;
+	text-decoration: none;
+}
