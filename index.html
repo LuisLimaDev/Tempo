@@ -69,6 +69,7 @@
 			div.quadroDia {
 				border: var(--borda);
 				padding: calc( var(--lados) / 2);
+				box-shadow: 0 0 20px -15px var(--corPadrao1);
 				border-radius: var(--lados);
 			}
 
@@ -88,14 +89,45 @@
 				background: var( --corPadrao1 );
 			}
 
+			fieldset {
+				box-shadow: 0 0 20px -15px var(--corPadrao1);
+			}
+
 			input.editavel:checked ~ fieldset {
 			  left:0;
 			  display: grid;
 			}
 
-			.rigth fieldset{ display: none }
-			.rigth input:checked ~ fieldset{
+			fieldset{ display: none }
+			input:checked ~ fieldset{
 				display: block;
+				margin-bottom: var(--lados)
+			}
+			label div.onOff, label div div.chave{
+				background: #fff2;
+				border-radius: calc(var(--lados)*2);
+			}
+			label:has(div.onOff) {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			label div div.chave{
+				width: calc(var(--lados)/4);
+				padding: var(--lados);
+			}
+
+			label div.onOff{
+				width: calc(var(--lados)*4.4);
+				padding: calc(var(--lados)/2);
+				//border: var(--borda);
+			}
+
+			input:checked ~ label div div.chave {
+				content: "on";
+				color: white;
+				margin-left: calc(var(--lados)*2);
+				background: var(--corPadrao2);
 			}
 
 			label, button, a.botao{ display: grid; }

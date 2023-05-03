@@ -113,7 +113,7 @@ inserGradPrev=(objServ)=>{
 			atributoClass: "atualizadoEm",
 			conteudoInterno: llt.dataPorExtenso( objServ.atualizado_em )
 		}).outerHTML
-		+"</div><div class='rigth'><input type='checkbox' name='alteraCity' id='alteraCity' style='display: none'><label for='alteraCity'>Alterar cidade</label>"
+		+"</div><div class='rigth'><input type='checkbox' name='alteraCity' id='alteraCity' style='display: none'><label for='alteraCity'><span>Alterar cidade</span><div class='onOff'><div class='chave'></div></div></label>"
 		+ caixaDePesquisa.outerHTML +"</div></div>"
 	});
 	gradeDias = ll2.novo({

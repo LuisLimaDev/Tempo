@@ -197,3 +197,23 @@ a.botaoZap{
 	text-align: center;
 	text-decoration: none;
 }
+
+
+
+
+			/* label div.onOff, label div div.chave{ */
+				/* padding: var(--lados); */
+				/* border: var(--borda); */
+				/* border-radius: calc(var(--lados)*2); */
+			/* } */
+
+			/* label div div.chave{ width: calc(var(--lados)/4) } */
+
+			/* label div.onOff{ */
+				/* width: calc(var(--lados)*5) */
+			/* } */
+
+			/* input:checked ~ div div.chave { */
+				/* margin-left: calc(var(--lados)*2); */
+				/* background: var(--corPadrao2) */
+			/* } */
