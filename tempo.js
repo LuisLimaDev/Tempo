@@ -1,3 +1,4 @@
+
 // tempo.js
 
 // nomeDacidade > pesquisa > códigoCidade;
@@ -25,7 +26,7 @@ caixaDePesquisa = ll2.novo({
 		+ ll2.novo({
 			nomeDoElemento: "input",
 			atributoID: "entradaNome",
-			outros: [{att:"onkeyup",valor:"pesqCidade()"}]
+			outros: [{att: "onkeyup", valor: "pesqCidade()"}]
 		}).outerHTML
 	}).outerHTML
 	+ ll2.novo({
@@ -33,7 +34,7 @@ caixaDePesquisa = ll2.novo({
 		conteudoInterno: "Resultados da pesquisa: " + ll2.novo({
 			nomeDoElemento: "select",
 			atributoID: "segsCidades",
-			outros: [{att:"onchange",valor:"salvarEscolha( this )"}]
+			outros: [{att: "onchange", valor: "salvarEscolha( this )"}]
 		}).outerHTML
 	}).outerHTML
 	+ ll2.novo({
@@ -54,7 +55,7 @@ painel = ll2.novo({
 	}).outerHTML
 });
 
-inicio=( elSaida )=>{
+inicioPrevTempo=( elSaida )=>{
 	elSaida.innerHTML = "";
 	elSaida.append( painel );
 	setTimeout(function(){
@@ -106,12 +107,12 @@ inserGradPrev=(objServ)=>{
 		ll2.novo({
 			nomeDoElemento: "h2",
 			atributoClass: "nomeCidade",
-			conteudoInterno: objServ.cidade + " - " + objServ.estado
+			conteudoInterno: fundo()[1] + "<br>" + objServ.cidade + " - " + objServ.estado
 		}).outerHTML
 		+ ll2.novo({
 			nomeDoElemento: "h3",
 			atributoClass: "atualizadoEm",
-			conteudoInterno: llt.dataPorExtenso( objServ.atualizado_em )
+			conteudoInterno: llt.dataPorExtenso2( objServ.atualizado_em )
 		}).outerHTML
 		+"</div><div class='rigth'><input type='checkbox' name='alteraCity' id='alteraCity' style='display: none'><label for='alteraCity'><span>Alterar cidade</span><div class='onOff'><div class='chave'></div></div></label>"
 		+ caixaDePesquisa.outerHTML +"</div></div>"
@@ -124,7 +125,7 @@ inserGradPrev=(objServ)=>{
 		gradeDias.append( ll2.novo({
 			nomeDoElemento: "div",
 			atributoClass: "quadroDia dia" + i + " " + objServ.clima[i].condicao,
-			conteudoInterno: "<div class='condicao'></div><div class='condicao_desc'>Condição climática "+ objServ.clima[i].condicao_desc +"</div><div class='dataDia'>"+ llt.dataPorExtenso( objServ.clima[i].data ) +"</div><div class='indiceUV'>Radiação UV: "+ objServ.clima[i].indice_uv +"</div><div class='temperatura'><div class='min'>Mínima: "+ objServ.clima[i].min +"°C</div><div class='max'>Máxima: "+ objServ.clima[i].max +"°C</div></div>"
+			conteudoInterno: "<div class='condicao'></div><div class='condicao_desc'>Condição climática "+ objServ.clima[i].condicao_desc +"</div><div class='dataDia'>"+ llt.dataPorExtenso2( objServ.clima[i].data ) +"</div><div class='indiceUV'>Radiação UV: "+ objServ.clima[i].indice_uv +"</div><div class='temperatura'><div class='min'>Mínima: "+ objServ.clima[i].min +"°C</div><div class='max'>Máxima: "+ objServ.clima[i].max +"°C</div></div>"
 		}) )
 	}
 	prevSemana.append( gradeDias )
@@ -146,7 +147,7 @@ exibirPrevisao=()=>{
 			callback: (res)=>{ prevs = res }
 		});
 	}
-	prevs = eval(prevs);
+	prevs = eval("[" + prevs + "]");
 	setTimeout(()=>{
 		if( prevs.cidade != undefined ){
 			inserGradPrev( prevs );
@@ -165,4 +166,17 @@ exibirPrevisao=()=>{
 			inserGradPrev( prevs[0] )
 		}
 	}, 200);
+}
+
+fundo=()=>{
+	if( llt.tagHoraAtualizada() < 120000000 ){
+		per = ["manhã", "Bom dia", "radial-gradient(150px 150px, #fff 50px, #ffa 50px 70px, #adf  100px)"]
+	} else if( llt.tagHoraAtualizada() > 120000000 && llt.tagHoraAtualizada() < 180000000 ){
+		per = ["tarde", "Bom tarde", "radial-gradient(150px 150px, #fff 50px, #ffa 50px 70px, #adf4  100px), linear-gradient(45deg, #048, transparent)"]
+		// per = ["tarde", "Bom tarde", `url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="drawe" height="120" width="120"><text class="item0" font-size="80px" transform="translate(15, 75)" style="fill: stroke: rgb(255 255 255)">🌚</text></svg>' )`]
+	} else if( llt.tagHoraAtualizada() < 50000000 || llt.tagHoraAtualizada() > 180000000 ){
+		per = ["noite", "Boa noite", "linear-gradient(45deg, #024, transparent)"]
+	}
+	// getById("llTempo").style.backgroundImage = per[2]
+	return per
 }
