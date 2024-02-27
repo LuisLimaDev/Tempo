@@ -1,3 +1,4 @@
+
 <!-- tempo.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -7,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta charset="UTF-8"/>
 		<meta name="lang" content="pt-BR"/>
-		<link rel="stylesheet" type="text/css" href="../css.css">
+		<link rel="stylesheet" type="text/css" href="css.css">
 		<script src="https://luislimadev.github.io/LLDev/elemental.js"></script>
 		<script src="conn.js"></script>
 
@@ -120,7 +121,6 @@
 			label div.onOff{
 				width: calc(var(--lados)*4.4);
 				padding: calc(var(--lados)/2);
-				//border: var(--borda);
 			}
 
 			input:checked ~ label div div.chave {
@@ -162,6 +162,6 @@
 			</div>
 		</div>
 		<script src="tempo.js"></script>
-		<script> inicio( document.getElementById("divSaida") ) </script>
+		<script> inicioPrevTempo( document.getElementById("divSaida") ); </script>
 	</body>
 </html>

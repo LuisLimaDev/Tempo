@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-br">
+	<head>
+		<script src="https://luislimadev.github.io/LLDev/elemental.js"></script>
+		<script src="https://weblate-cdn.com/a5ba5dc29f39498aa734528a54b50d0a/weblate.js"></script>
+	</head>
+	<body>
+		<h1>visualcrossing.com/weather-api</h1>
+		<div id="hg-weather">
+		</div>
+		<script>
+
+		// conn.js
+
+		var pg;
+
+			req=({
+				obj,
+				met,
+				pd,
+				callback
+			}) => {
+				obj = obj ? obj : "./";
+				met = met ? met : "GET";
+				pd = pd ? pd : "";
+				callback = callback ? callback : "Sem 'callback' atribuido! ";
+				pg = new XMLHttpRequest();
+				pg.onerror = function () {
+					callback({
+						err: "Erro: " + pg.status
+					})
+				};
+				pg.onload = function(){
+					if (pg.status == 200) {
+						callback(pg.response);
+					} else {
+						callback("Erro: " + pg.status)
+					}
+				};
+				if (met != "POST") {
+					pg.open(met, obj);
+					pg.send()
+				} else {
+					pg.open(met, obj, true);
+					pg.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					pg.send(pd)
+				}
+
+			}
+
+			meuTempo="";
+			req({
+				obj: "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Campinas%2CBR?unitGroup=us&key=MRGRF7USUBELURVF3T94ZCVEK",
+				callback: ( resposta )=>{
+					meuTempo = JSON.parse( resposta );
+					
+					setTimeout( ()=>{
+						infoCidade = ll2.novo({
+							nomeDoElemento: "div",
+							conteudoInterno: meuTempo.resolvedAddress
+						});
+						getById("hg-weather").append( infoCidade )
+						orgGrade( meuTempo , getById("hg-weather") )
+					}, 300);
+
+				} 
+			});
+
+			llt = new llTempo;
+
+			orgGrade=( infoW, elSaida )=>{
+				saida = elSaida == undefined ? document.body : elSaida;
+				for( dias = 0 ; dias < infoW.days.length; dias++ ){
+					wDia = ll2.novo({
+						nomeDoElemento: "div",
+						atributoClass: "dia tile" + dias + " " + infoW.days[ dias ].icon,
+						conteudoInterno: ll2.novo({
+							nomeDoElemento: "p",
+							conteudoInterno: infoW.days[ dias ].datetime
+						}).outerHTML + ll2.novo({
+							nomeDoElemento: "p",
+							conteudoInterno: infoW.days[ dias ].description
+						}).outerHTML + ll2.novo({
+							nomeDoElemento: "p",
+							conteudoInterno: "Condições: " + infoW.days[ dias ].conditions
+						}).outerHTML + ll2.novo({
+							nomeDoElemento: "p",
+							conteudoInterno: "Ventos de " + infoW.days[ dias ].windspeed + "m/s"
+						}).outerHTML + ll2.novo({
+							nomeDoElemento: "p",
+							conteudoInterno: "Nebulosidade de " + infoW.days[ dias ].cloudcover + "%"
+						}).outerHTML + ll2.novo({
+							nomeDoElemento: "span",
+							conteudoInterno: "Min: " + infoW.days[ dias ].tempmin
+						}).outerHTML + ll2.novo({
+							nomeDoElemento: "span",
+							conteudoInterno: "Max: " + infoW.days[ dias ].tempmax
+						}).outerHTML
+					});
+					saida.append( wDia );
+				}
+			}
+
+		</script>
+	</body>
+</html>
