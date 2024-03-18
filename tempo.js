@@ -16,6 +16,16 @@
 // &#9789; ICONE DE NOITE
 // 
 
+alpicaIconesBG=()=>{
+	linkEl = ll2.novo({
+		nomeDoElemento: "link",
+		atributoType: "text/css",
+		outros: [{att: "rel", valor: "stylesheet"}],
+		atributoHREF: "https://luislimadev.github.io/Tempo/css.css"
+	});
+	document.body.head.append(linkEl)
+}
+
 tentCarr = 0;
 
 caixaDePesquisa = ll2.novo({
@@ -60,6 +70,7 @@ inicioPrevTempo=( elSaida )=>{
 	elSaida.append( painel );
 	setTimeout(function(){
 		exibirPrevisao();
+		alpicaIconesBG();
 	},300);
 }
 
