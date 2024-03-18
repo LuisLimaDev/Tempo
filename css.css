@@ -113,9 +113,9 @@ div.conteiner a:not( .botaoZap, .botao ){
 	padding: 15px;
 }
 
-h1, h2, h3,h4,h5,h6, span, p, pre, section, label, input, button, a, a.botao {
+/**h1, h2, h3,h4,h5,h6, span, p, pre, section, label, input, button, a, a.botao {
 	color: var(--corPadrao2);
-}
+}**/
 
 .elmnts{
 	padding: var( --lados);
