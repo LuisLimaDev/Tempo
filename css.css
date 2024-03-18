@@ -1,228 +1,154 @@
-.item0{
-	animation: animY 3s infinite linear;
-}
 
-@keyframes animY{
-	0%{
-		transform: translate(0,0);
-	}
-	50%{
-		transform: translate(0,100px);
+@media( max-width: 1080px ){
+	div.gradeDias {
+		grid-template-columns: auto auto auto;
 	}
 }
 
-
-html{
-	--cor1: #4af;
-	--cor2: #69e;
-	--cor3: #daedfffe;
-	--cor4: #ff8dee60;
-	--verdeZap: #00cc00;
-	--cinza1: #4448;
-	--cinza2: rgb(255 255 255 / 50%);
-	--borda: 1px solid;
-	--lados: 10px;
-	--sombra: 0 5px 15px rgb(0 0 0 / 0.1);
-}
-
-*, body{
-	font-family: sans-serif;
-	margin: 0;
-	padding: 0;
-	transition: 0.3s all ease !important;
-}
-
-div#main{
-	width: 90%;
-	margin: 5% auto;
-	padding: var( --lados );
-	border-radius: var(--lados);
-	background: var(--cinza2);
-	box-shadow: var(--sombra);
-	backdrop-filter: blur(10px);
-}
-
-div#pagina{
-	display: grid;
-	grid-template-columns: 50% 50%;
-	grid-gap: 20px;
-}
-
-@media( max-width: 680px ){
-	html{
-		--lados: 5%;
+@media( max-width: 720px ){
+	div.gradeDias {
+		grid-template-columns: auto auto;
 	}
-	div#pagina{
+
+	div.infoCidade {
 		grid-template-columns: 100%;
 	}
 }
-@media( max-width: 920px ){
-	div#pagina{
+
+@media( max-width: 480px ){
+	div.gradeDias {
+		grid-template-columns: 100%;
 	}
 }
 
-div#menuBlock:target{
-	top: 2%;
-}
-
-div#menuBlock {
-	position: absolute;
-	top: -100%;
-	left: 5%;
-	background: linear-gradient(45deg, var(--cor4), var(--cor3));
-	padding: var(--lados);
+.infoCidade {
 	display: grid;
-	border-radius: var(--lados);
-	box-shadow: var(--sombra);
+	grid-template-columns: 50% 50%;
 }
 
-#menuBlock div a, #menuBlock div h3 {display: block;padding:  var(--lados);margin:  var(--lados) 0;}
-
-#menuBlock div a:hover {
-	background: var(--cinza1);
-	color: white;
+.left {
+	height: fit-content;
 }
 
-div.barraTopo.main {
-	padding: 20px 0;
-}
-
-div.barraTopo{
+.gradeDias {
 	display: grid;
-	grid-template-columns: 40px auto;
+	grid-template-columns: repeat(6, 15%);
 	grid-gap: 20px;
-	text-align: center;
+	justify-content: space-between;
 }
 
-.view{
-	/* padding: var(--lados); */
-	/* background: linear-gradient(0deg, var( --cinza2 ), transparent); */
+.gradeDias div {
 	display: grid;
-	/* grid-gap: var(--lados); */
-	/* border-radius: var(--lados); */
-	/* box-shadow: var(--sombra); */
-	margin: 20px 0;
+	padding: 5px;
 }
 
-div.conteiner a:not( .botaoZap, .botao ):hover{
-	background: var( --cinza2 )
-}
-div.conteiner a:not( .botaoZap, .botao ){
-	line-height: 60px;
-	margin: 20px 0;
-	padding: 15px;
-}
-
-/**h1, h2, h3,h4,h5,h6, span, p, pre, section, label, input, button, a, a.botao {
-	color: var(--corPadrao2);
-}**/
-
-.elmnts{
-	padding: var( --lados);
-	width: calc( 100% - 20px;);
+div.quadroDia {
+	border: var(--borda);
+	padding: calc( var(--lados) / 2);
+	box-shadow: 0 0 20px -15px var(--corPadrao1);
 	border-radius: var(--lados);
 }
 
-fieldset{
-	padding: 20px;
-	border-radius: var(--lados);
+.temperatura {
+	grid-template-columns: 50% 50%;
 }
 
-label{
-	display: grid;
-	background: none;
-	margin:  var(--lados) 0;
-	border: 1px solid var( --cinza1 );
-	font-size: 16pt;
-	padding:  var(--lados) calc( var(--lados) * 2);
-	border-radius: var(--lados);
+div.min {
+	background: #00f;
 }
 
-label:has(input:focus){
-	box-shadow: 0 0 1px #000, 0 0 2px 3px var( --cor1 );
-	font-size: 8pt;
+div.max {
+	background: #f00;
 }
 
-input:focus {
-	font-size: 16pt;
-	outline: none;
+button, a.botao{
+	background: var( --corPadrao1 );
 }
 
-select{ outline: none; }
+fieldset {
+	box-shadow: 0 0 20px -15px var(--corPadrao1);
+}
 
-label input{ font-size: 8pt; padding: 0; border-radius: 0 }
+input.editavel:checked ~ fieldset {
+  left:0;
+  display: grid;
+}
 
-input, select, button, a.botao{
+fieldset{ display: none }
+input:checked ~ fieldset{
+	display: block;
+	margin-bottom: var(--lados)
+}
+label div.onOff, label div div.chave{
+	background: #fff2;
+	border-radius: calc(var(--lados)*2);
+}
+label:has(div.onOff) {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+label div div.chave{
+	width: calc(var(--lados)/4);
+	padding: var(--lados);
+}
+
+label div.onOff{
+	width: calc(var(--lados)*4.4);
+	padding: calc(var(--lados)/2);
+}
+
+input:checked ~ label div div.chave {
+	content: "on";
+	color: white;
+	margin-left: calc(var(--lados)*2);
+	background: var(--corPadrao2);
+}
+
+label, button, a.botao{ display: grid; }
+fieldset, label, button, a.botao{
+	border: var(--borda);
+	margin: 5px 0;
+	color: var( --corPadrao2 );
+}
+
+label input, label select{
 	background: none;
 	border: none;
-	width: 100%;
-	font-size: 12pt;
-	padding:  var(--lados);
-	border-radius: var(--lados);
-}
-
-::placeholder{
-	color: var(--cinza1)
-}
-
-label:hover{
-	box-shadow: 0 0 1px #000, 0 0 2px 3px var( --cor1 );
-}
-
-button:hover, a.botao:hover, a.botaoZap:hover{
-	background: var( --cor2 );
-	color: white;
-	box-shadow: 0 0 1px #000, 0 0 2px 3px var( --cor1 );
-}
-button, a.botao{
-	background: none;
-	color: var( --cor2 );
-	border: 1px solid var( --cor2 );
-	text-align: center;
-	text-decoration: none;
-}
-
-a.botaoZap:hover{
-	background: var( --verdeZap );
-	color: white;
-}
-a.botaoZap{
-	background: none;
-	color: var( --verdeZap );
-	border: 1px solid var( --verdeZap );
-	text-align: center;
-	text-decoration: none;
-}
-
-div#llTempo .view {
-    margin: 20px;
+	color: var( --corPadrao2 );
 }
 
 div#llTempo {
-    background: url(https://img.freepik.com/fotos-premium/plano-de-fundo-do-ceu-apenas-nuvens-no-ceu-azul-vertical_483040-5179.jpg?w=2000);
-    padding:  var(--lados) 0;
-    border-radius: 30px;
-    background-size: cover;
-    background-position: 50%;
-    /* box-shadow: inset 5px 5px 5px #fff, inset -5px -5px 5px #666, 0px 0px 15px #888; */
+background: url(https://img.freepik.com/fotos-premium/plano-de-fundo-do-ceu-apenas-nuvens-no-ceu-azul-vertical_483040-5179.jpg?w=2000);
+padding:  var(--lados) 0;
+border-radius: 30px;
+background-size: cover;
+background-position: 50%;
+/* box-shadow: inset 5px 5px 5px #fff, inset -5px -5px 5px #666, 0px 0px 15px #888; */
 }
 
 .quadroDia {
-    background: #fffc;
+background: #fffc;
 }
 
-			div.pn .condicao{
-				content: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="drawe" height="100" width="120"><text class="item0" font-size="80px" transform="translate(12, 75)" style="fill: rgb(255 255 255)" stroke-width="1px" stroke="rgb(0 0 0)">🌤</text></svg>' );
-			}
+div.pn .condicao{
+	content: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="drawe" height="100" width="120"><text class="item0" font-size="80px" transform="translate(12, 75)" style="fill: rgb(255 255 255)" stroke-width="1px" stroke="rgb(0 0 0)">🌤</text></svg>' );
+}
 
-			div.sol .condicao{
-				content: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="drawe" height="100" width="120"><text class="item0" font-size="80px" transform="translate(12, 75)" style="fill: rgb(255 255 255)" stroke-width="1px" stroke="rgb(0 0 0)">☀</text></svg>' );
-			}
+div.sol .condicao{
+	content: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="drawe" height="100" width="120"><text class="item0" font-size="80px" transform="translate(12, 75)" style="fill: rgb(255 255 255)" stroke-width="1px" stroke="rgb(0 0 0)">☀</text></svg>' );
+}
 
-			div.c .condicao{
-				content: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="drawe" height="100" width="120"><text class="item0" font-size="80px" transform="translate(12, 75)" style="fill: rgb(255 255 255)" stroke-width="1px" stroke="rgb(0 0 0)">🌧</text></svg>' );
-			}
+div.c .condicao{
+	content: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="drawe" height="100" width="120"><text class="item0" font-size="80px" transform="translate(12, 75)" style="fill: rgb(255 255 255)" stroke-width="1px" stroke="rgb(0 0 0)">🌧</text></svg>' );
+}
 
-			div.ci .condicao{
-				content: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="drawe" height="100" width="120"><text class="item0" font-size="80px" transform="translate(12, 75)" style="fill: rgb(255 255 255)" stroke-width="1px" stroke="rgb(0 0 0)">☂</text></svg>' );
-			}
+div.ci .condicao{
+	content: url( 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="drawe" height="100" width="120"><text class="item0" font-size="80px" transform="translate(12, 75)" style="fill: rgb(255 255 255)" stroke-width="1px" stroke="rgb(0 0 0)">☂</text></svg>' );
+}
+
+#rodapoe{
+	padding: 30px 0;
+	width: 100%;
+	text-align: center;
+}
