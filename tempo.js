@@ -23,7 +23,7 @@ alpicaIconesBG=()=>{
 		outros: [{att: "rel", valor: "stylesheet"}],
 		atributoHREF: "https://luislimadev.github.io/Tempo/css.css"
 	});
-	document.body.head.append(linkEl)
+	document.head.append(linkEl)
 }
 
 tentCarr = 0;
